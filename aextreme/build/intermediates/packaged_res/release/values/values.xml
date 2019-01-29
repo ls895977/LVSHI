@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <attr format="reference|color" name="appBackground"/>
+    <attr format="reference" name="appLoadingDraw"/>
+    <attr format="reference|color" name="appThemeColor"/>
+    <attr format="reference|color" name="appTitleBarBg"/>
+    <attr format="reference|color" name="appTitleColor"/>
+    <attr format="dimension" name="appTitleSize"/>
+    <color name="bg">#f6f6f6</color>
+    <color name="bg_black">#333333</color>
+    <color name="bg_color">#EDEDED</color>
+    <color name="bg_gray">#4D4D4D</color>
+    <color name="black">#000000</color>
+    <color name="blue">#01ABE8</color>
+    <color name="btn_cancel">#FF6565</color>
+    <color name="btn_cancel_pressed">#993D3D</color>
+    <color name="btn_default">#52CACB</color>
+    <color name="btn_green">#16C369</color>
+    <color name="btn_green_color">#099508</color>
+    <color name="btn_green_pressed1">#1aad19</color>
+    <color name="btn_pressed">#337E80</color>
+    <color name="btn_red">#F36070</color>
+    <color name="btn_red_pressed">#80333C</color>
+    <color name="btn_yellow">#FF970D</color>
+    <color name="cancel_color">#ff0000</color>
+    <color name="color_blue">#0000ff</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="default_bg">#52CACB</color>
+    <color name="dimgray">#696969</color>
+    <color name="divider">#F5F5F5</color>
+    <color name="divider_gray">#AAacacac</color>
+    <color name="divider_gray_light">#11000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="fragment_bg">#E6E6E6</color>
+    <color name="game_item_gray">#F2F2F2</color>
+    <color name="game_sort_bg">#3D9798</color>
+    <color name="game_sort_slider">#FEB859</color>
+    <color name="gray_dark">#5E5E5E</color>
+    <color name="gray_white">#CCCCCC</color>
+    <color name="green">#679C26</color>
+    <color name="grgray">#686868</color>
+    <color name="header">#58567D</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="link_border">#50FBF8DE</color>
+    <color name="main_tab">#52CACC</color>
+    <color name="main_tab_pressed">#296566</color>
+    <color name="notify_bg">#E1E6EA</color>
+    <color name="orange">#f4b02b</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="product_color">#f3f5f7</color>
+    <color name="purple">#BD30AE</color>
+    <color name="red">#FF0000</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="so_bg">#576B95</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="theme">#222222</color>
+    <color name="theme_bg">#F5F5F5</color>
+    <color name="theme_title">#FFFFFF</color>
+    <color name="translucence">#40000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="txt_back">#252525</color>
+    <color name="txt_black">#555555</color>
+    <color name="txt_black1">#ffffff</color>
+    <color name="txt_blue">#52CACB</color>
+    <color name="txt_gray">#222222</color>
+    <color name="txt_gray1">#555555</color>
+    <color name="txt_gray_light">#c0c0c0</color>
+    <color name="txt_white_pressed">#60FFFFFF</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="violet">#904af1</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_yellow">#E6FCCE</color>
+    <color name="yellow">#FE7F00</color>
+    <declare-styleable name="CircleImageView">
+        <attr format="dimension" name="civ_border_width"/>
+        <attr format="color" name="civ_border_color"/>
+        <attr format="boolean" name="civ_border_overlay"/>
+        <attr format="color" name="civ_fill_color"/>
+    </declare-styleable>
+    <declare-styleable name="KeyValueView">
+        <attr format="reference" name="kvDrawRight"/>
+        <attr format="string" name="kvKey"/>
+        <attr format="reference|color" name="kvKeyColor"/>
+        <attr format="dimension" name="kvKeySize"/>
+        <attr format="string" name="kvKeySign"/>
+        <attr format="string" name="kvValue"/>
+        <attr format="reference|color" name="kvValueColor"/>
+        <attr format="dimension" name="kvValueSize"/>
+        <attr format="string" name="kvValueHint"/>
+        <attr format="reference|color" name="kvValueHintColor"/>
+        <attr format="dimension" name="kvValuePadding"/>
+        <attr format="dimension" name="kvValuePaddingLeft"/>
+        <attr format="dimension" name="kvValuePaddingRight"/>
+        <attr format="dimension" name="kvValuePaddingTop"/>
+        <attr format="dimension" name="kvValuePaddingBottom"/>
+        <attr format="dimension" name="kvValueMargin"/>
+        <attr format="dimension" name="kvValueMarginLeft"/>
+        <attr format="dimension" name="kvValueMarginRight"/>
+        <attr format="dimension" name="kvValueMarginTop"/>
+        <attr format="dimension" name="kvValueMarginBottom"/>
+    </declare-styleable>
+    <declare-styleable name="NavView">
+        <attr format="boolean" name="navHorizontal"/>
+        <attr format="boolean" name="navChecked"/>
+        <attr format="reference" name="navDrawRight"/>
+        <attr format="string" name="navText"/>
+        <attr format="reference|color" name="navTextColor"/>
+        <attr format="dimension" name="navTextSize"/>
+        <attr format="reference|color" name="navDraw"/>
+        <attr format="reference|color" name="navDrawTint"/>
+        <attr format="dimension" name="navDrawWidth"/>
+        <attr format="dimension" name="navDrawHeight"/>
+        <attr format="boolean" name="navTextRight"/>
+        <attr format="dimension" name="navPadding"/>
+    </declare-styleable>
+    <declare-styleable name="PullToRefresh">
+
+        <!-- A drawable to use as the background of the Refreshable View -->
+        <attr format="reference|color" name="ptrRefreshableViewBackground"/>
+
+        <!-- A drawable to use as the background of the Header and Footer Loading Views -->
+        <attr format="reference|color" name="ptrHeaderBackground"/>
+
+        <!-- Text Color of the Header and Footer Loading Views -->
+        <attr format="reference|color" name="ptrHeaderTextColor"/>
+
+        <!-- Text Color of the Header and Footer Loading Views Sub Header -->
+        <attr format="reference|color" name="ptrHeaderSubTextColor"/>
+
+        <!-- Mode of Pull-to-Refresh that should be used -->
+        <attr name="ptrMode">
+            <flag name="disabled" value="0x0"/>
+            <flag name="pullFromStart" value="0x1"/>
+            <flag name="pullFromEnd" value="0x2"/>
+            <flag name="both" value="0x3"/>
+            <flag name="manualOnly" value="0x4"/>
+
+            <!-- These last two are depreacted -->
+            <flag name="pullDownFromTop" value="0x1"/>
+            <flag name="pullUpFromBottom" value="0x2"/>
+        </attr>
+
+        <!-- Whether the Indicator overlay(s) should be used -->
+        <attr format="reference|boolean" name="ptrShowIndicator"/>
+
+        <!-- Drawable to use as Loading Indicator. Changes both Header and Footer. -->
+        <attr format="reference" name="ptrDrawable"/>
+
+        <!-- Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. -->
+        <attr format="reference" name="ptrDrawableStart"/>
+
+        <!-- Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. -->
+        <attr format="reference" name="ptrDrawableEnd"/>
+
+        <!-- Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. -->
+        <attr format="reference|boolean" name="ptrOverScroll"/>
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views -->
+        <attr format="reference" name="ptrHeaderTextAppearance"/>
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
+        <attr format="reference" name="ptrSubHeaderTextAppearance"/>
+
+        <!-- Style of Animation should be used displayed when pulling. -->
+        <attr name="ptrAnimationStyle">
+            <flag name="rotate" value="0x0"/>
+            <flag name="flip" value="0x1"/>
+        </attr>
+
+        <!-- Whether the user can scroll while the View is Refreshing -->
+        <attr format="reference|boolean" name="ptrScrollingWhileRefreshingEnabled"/>
+
+        <!--
+        	Whether PullToRefreshListView has it's extras enabled. This allows the user to be
+        	able to scroll while refreshing, and behaves better. It acheives this by adding
+        	Header and/or Footer Views to the ListView.
+        -->
+        <attr format="reference|boolean" name="ptrListViewExtrasEnabled"/>
+
+        <!--
+        	Whether the Drawable should be continually rotated as you pull. This only
+        	takes effect when using the 'Rotate' Animation Style.
+        -->
+        <attr format="reference|boolean" name="ptrRotateDrawableWhilePulling"/>
+
+        <!-- BELOW HERE ARE DEPRECEATED. DO NOT USE. -->
+        <attr format="reference|color" name="ptrAdapterViewBackground"/>
+        <attr format="reference" name="ptrDrawableTop"/>
+        <attr format="reference" name="ptrDrawableBottom"/>
+    </declare-styleable>
+    <declare-styleable name="RoundImageView">
+        <attr format="dimension" name="rivRadius"/>
+    </declare-styleable>
+    <declare-styleable name="SwipeListView">
+        <attr format="boolean" name="swipeOpenOnLongPress"/>
+        <attr format="integer" name="swipeAnimationTime"/>
+        <attr format="dimension" name="swipeOffsetLeft"/>
+        <attr format="dimension" name="swipeOffsetRight"/>
+        <attr format="boolean" name="swipeCloseAllItemsWhenMoveList"/>
+        <attr format="reference" name="swipeFrontView"/>
+        <attr format="reference" name="swipeBackView"/>
+        <attr format="enum" name="swipeMode">
+            <enum name="none" value="0"/>
+            <enum name="both" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="left" value="3"/>
+        </attr>
+        <attr format="enum" name="swipeActionLeft">
+            <enum name="reveal" value="0"/>
+            <enum name="dismiss" value="1"/>
+            <enum name="choice" value="2"/>
+        </attr>
+        <attr format="enum" name="swipeActionRight">
+            <enum name="reveal" value="0"/>
+            <enum name="dismiss" value="1"/>
+            <enum name="choice" value="2"/>
+        </attr>
+        <attr format="reference" name="swipeDrawableChecked"/>
+        <attr format="reference" name="swipeDrawableUnchecked"/>
+    </declare-styleable>
+    <declare-styleable name="TintImageView">
+        <attr format="reference|color" name="tint"/>
+    </declare-styleable>
+    <declare-styleable name="innerrect">
+        <attr format="dimension" name="inner_width"/>
+        <attr format="dimension" name="inner_height"/>
+        <attr format="dimension" name="inner_margintop"/>
+        <attr format="color" name="inner_corner_color"/>
+        <attr format="dimension" name="inner_corner_length"/>
+        <attr format="dimension" name="inner_corner_width"/>
+        <attr format="reference" name="inner_scan_bitmap"/>
+        <attr format="integer" name="inner_scan_speed"/>
+        <attr format="boolean" name="inner_scan_iscircle"/>
+    </declare-styleable>
+    <dimen name="about_logo_width">70dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="addbackcart_pdingtop">10dip</dimen>
+    <dimen name="btn_height">35dip</dimen>
+    <dimen name="btn_height_er">45dip</dimen>
+    <dimen name="btn_height_small">28dip</dimen>
+    <dimen name="btn_login_left">38dp</dimen>
+    <dimen name="btn_margin_top">20dip</dimen>
+    <dimen name="btn_min_width">61dip</dimen>
+    <dimen name="btn_padding_horizontal">10dip</dimen>
+    <dimen name="btn_padding_vertical">6dip</dimen>
+    <dimen name="btn_radius">5dip</dimen>
+    <dimen name="btn_radius1">10dip</dimen>
+    <dimen name="btn_width">140dp</dimen>
+    <dimen name="cart_top">40dip</dimen>
+    <dimen name="edit_colon_padding_left">28dip</dimen>
+    <dimen name="edit_colon_padding_three_left">60dip</dimen>
+    <dimen name="edit_height">35dip</dimen>
+    <dimen name="edit_height_box">70dip</dimen>
+    <dimen name="edit_height_defult">70dip</dimen>
+    <dimen name="edit_height_medium">50dip</dimen>
+    <dimen name="edit_height_small">45dip</dimen>
+    <dimen name="edit_height_smaller">30dip</dimen>
+    <dimen name="edit_key_padding_left">4dip</dimen>
+    <dimen name="edit_left_padding">5dp</dimen>
+    <dimen name="edit_margin_top">20dip</dimen>
+    <dimen name="edit_padding_left">45dip</dimen>
+    <dimen name="edit_padding_lefts">60dp</dimen>
+    <dimen name="edit_padding_three_left">80dip</dimen>
+    <dimen name="edit_width_input">245dip</dimen>
+    <dimen name="font_size_13sp">13sp</dimen>
+    <dimen name="font_size_14sp">14sp</dimen>
+    <dimen name="font_size_15sp">15sp</dimen>
+    <dimen name="font_size_16sp">16sp</dimen>
+    <dimen name="gallery_point_height">25dip</dimen>
+    <dimen name="game_item_ico_width">55dip</dimen>
+    <dimen name="get_btn_height">48dip</dimen>
+    <dimen name="header_act_padding">4dip</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="header_func_width">60dip</dimen>
+    <dimen name="header_height">45dip</dimen>
+    <dimen name="header_split">40dip</dimen>
+    <dimen name="header_title_left">50dip</dimen>
+    <dimen name="home_activity_msg_item_heigth">60dip</dimen>
+    <dimen name="ico_width">20dip</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="key_three_left">65dip</dimen>
+    <dimen name="key_two_left">50dip</dimen>
+    <dimen name="layout_width_heith">25dp</dimen>
+    <dimen name="left_menu_item_height">44dip</dimen>
+    <dimen name="left_menu_item_ico_width">20dip</dimen>
+    <dimen name="left_padding_edit">100dip</dimen>
+    <dimen name="lv_heigth">80dip</dimen>
+    <dimen name="main_tab_item_height">55dip</dimen>
+    <dimen name="main_tab_item_ico_width">30dip</dimen>
+    <dimen name="margin_default">20dip</dimen>
+    <dimen name="margin_default1">25dip</dimen>
+    <dimen name="margin_normal">10dip</dimen>
+    <dimen name="padding_default">5dip</dimen>
+    <dimen name="padding_left_right">10dp</dimen>
+    <dimen name="padding_normal">4dip</dimen>
+    <dimen name="padding_tops">15dp</dimen>
+    <dimen name="radio_btn">6dp</dimen>
+    <dimen name="recharge_leftandright">20dip</dimen>
+    <dimen name="recharge_top">40dip</dimen>
+    <dimen name="rela_height">198dip</dimen>
+    <dimen name="right_txt_box">123dip</dimen>
+    <dimen name="savenum_item_ico_width">55dip</dimen>
+    <dimen name="shadow_width">20dip</dimen>
+    <dimen name="shadow_width_left">14dip</dimen>
+    <dimen name="small_sort_item_heigth">60dip</dimen>
+    <dimen name="sort_item_heigth">120dip</dimen>
+    <dimen name="text_chose_size">14sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="txt_big">20sp</dimen>
+    <dimen name="txt_btn_box">276dip</dimen>
+    <dimen name="txt_btn_left">240dip</dimen>
+    <dimen name="txt_btn_width">320dip</dimen>
+    <dimen name="txt_default">14sp</dimen>
+    <dimen name="txt_font_size">21sp</dimen>
+    <dimen name="txt_medium">16sp</dimen>
+    <dimen name="txt_small">12sp</dimen>
+    <dimen name="txt_smaller">10sp</dimen>
+    <dimen name="txt_top_height">78dip</dimen>
+    <dimen name="user_head_frame_width">106dip</dimen>
+    <dimen name="user_head_width">100dip</dimen>
+    <dimen name="web_refresh_progressbar_left">20dip</dimen>
+    <dimen name="web_refresh_progressbar_width">20dip</dimen>
+    <dimen name="webgame_headline_item_heigth">45dip</dimen>
+    <item name="auto_focus" type="id"/>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="encode_failed" type="id"/>
+    <item name="encode_succeeded" type="id"/>
+    <item name="gridview" type="id"/>
+    <item name="launch_product_query" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+    <item name="scrollview" type="id"/>
+    <item name="search_book_contents_failed" type="id"/>
+    <item name="search_book_contents_succeeded" type="id"/>
+    <item name="webview" type="id"/>
+    <string name="app_name">aextreme</string>
+    <string name="back">返回</string>
+    <string name="confirm">确定</string>
+    <string name="empty_str_loading">请稍候…</string>
+    <string name="empty_str_retry">重新加载</string>
+    <string name="empty_str_retry_btn_refresh">刷新</string>
+    <string name="empty_str_retry_hint">网络连接失败，请稍候再试！</string>
+    <string name="footer_last_hint_info">已加载全部</string>
+    <string name="hint_nodata">没有数据</string>
+    <string name="loading">加载中…</string>
+    <string name="pull_to_refresh_from_bottom_pull_label">上拉加载更多…</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_top_refreshing_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">松开加载更多…</string>
+    <string name="pull_to_refresh_top_pull_label">下拉刷新…</string>
+    <string name="pull_to_refresh_top_refreshing_label">正在载入…</string>
+    <string name="pull_to_refresh_top_release_label">松开刷新…</string>
+    <string name="refresh_release_text">松开即可刷新</string>
+    <string name="timer_send_re">重新发送</string>
+    <string name="timer_sending">发送中...</string>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus" ns1:targetApi="19">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/theme_bg</item>
+        <item name="android:textColorPrimary">@color/txt_black</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="toolbarStyle">@style/CurToolbar</item>
+        <item name="appBackground">@color/theme_bg</item>
+        <item name="appThemeColor">@color/theme</item>
+        <item name="appTitleSize">@dimen/txt_big</item>
+        <item name="appTitleColor">@color/white</item>
+        <item name="appTitleBarBg">@color/theme</item>
+        <item name="appLoadingDraw">@drawable/rotate_loading_circle</item>
+    </style>
+    <style name="CurToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+        <!-- 设置该属性解决空白部分-->
+    </style>
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+
+        <!-- 边框 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 半透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+    <style name="RushBuyCountDownTimerViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_view</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">0</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="txtBigStyle">
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">@dimen/txt_big</item>
+    </style>
+    <style name="txtBlackBigStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/txt_big</item>
+    </style>
+    <style name="txtBlueStyle">
+        <item name="android:textColor">@color/txt_blue</item>
+        <item name="android:textSize">@dimen/txt_default</item>
+    </style>
+    <style name="txtDefaultGrayStyle">
+        <item name="android:textColor">@color/txt_gray1</item>
+        <item name="android:textSize">@dimen/text_chose_size</item>
+    </style>
+    <style name="txtDefaultStyle">
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">@dimen/txt_smaller</item>
+
+    </style>
+    <style name="txtMediumStyle">
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">@dimen/txt_default</item>
+    </style>
+    <style name="txtSmallGrayStyle">
+        <item name="android:textColor">@color/txt_gray</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+    </style>
+    <style name="txtSmallStyle">
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+    </style>
+    <style name="txtSmallWhiteStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+    </style>
+    <style name="txtWhiteBigStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_big</item>
+    </style>
+    <style name="txtWhiteMediumStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/txt_medium</item>
+    </style>
+    <style name="txtWhiteSmallStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+    </style>
+    <style name="txtWhiteStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_default</item>
+    </style>
+</resources>
