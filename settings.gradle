@@ -1,1 +1,1 @@
-include ':app', ':aextreme'
+include ':app', ':aextreme', ':X5WebDemo'

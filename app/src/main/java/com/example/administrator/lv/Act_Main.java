@@ -21,9 +21,9 @@ import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -32,7 +32,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.example.administrator.lv.permission.RxPermissions;
-import com.example.administrator.lv.view.MyChromeClient;
+import com.example.administrator.lv.utils.X5WebView;
 import com.lykj.aextreme.afinal.common.BaseActivity;
 
 import java.io.File;
@@ -43,8 +43,8 @@ import io.reactivex.functions.Consumer;
 
 import static com.example.administrator.lv.view.MyChromeClient.FILECHOOSER_RESULTCODE;
 
-public class MainActivity extends BaseActivity {
-    private WebView mWebView;
+public class Act_Main extends BaseActivity {
+    private X5WebView mWebView;
     private Uri imageUri;
     private RxPermissions rxPermissions;
     private ValueCallback<Uri> mUploadMessage;// 表单的数据信息
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
     private String myUrl="https://lawyer.libawall.com";
     @Override
     public int initLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.act_main;
     }
 
     @Override
@@ -72,49 +72,10 @@ public class MainActivity extends BaseActivity {
                     }
                 });
         mWebView = getView(R.id.webView);
+        mWebView.setContext(this);
         mWebView.loadUrl(myUrl);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        WebSettings settings = mWebView.getSettings();
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setJavaScriptEnabled(true);
-        settings.setSupportZoom(true);
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.startsWith("http:") || url.startsWith("https:")) {
-                    view.loadUrl(url);
-                    return false;
-                } else {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                }
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                // TODO Auto-generated method stub
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                // TODO Auto-generated method stub
-                super.onPageFinished(view, url);
-            }
-        });
-        mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public boolean onShowFileChooser(WebView webView,
-                                             ValueCallback<Uri[]> filePathCallback,
-                                             FileChooserParams fileChooserParams) {
-                mUploadCallbackAboveL = filePathCallback;
-                take();
-                return true;
-            }
-
+        mWebView.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
                 mUploadMessage = uploadMsg;
@@ -130,6 +91,16 @@ public class MainActivity extends BaseActivity {
                 mUploadMessage = uploadMsg;
                 take();
             }
+            // For Android  >= 5.0
+            public boolean onShowFileChooser(com.tencent.smtt.sdk.WebView webView,
+                                             com.tencent.smtt.sdk.ValueCallback<Uri[]> filePathCallback,
+                                             com.tencent.smtt.sdk.WebChromeClient.FileChooserParams fileChooserParams) {
+                Log.i("test", "openFileChooser 4:" + filePathCallback.toString());
+                mUploadCallbackAboveL = filePathCallback;
+                take();
+                return true;
+            }
+
         });
 
     }
@@ -180,7 +151,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @SuppressWarnings("null")
-    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void onActivityResultAboveL(int requestCode, int resultCode, Intent data) {
         if (requestCode != FILECHOOSER_RESULTCODE
                 || mUploadCallbackAboveL == null) {
@@ -249,7 +220,7 @@ public class MainActivity extends BaseActivity {
         i.setType("image/*");
         Intent chooserIntent = Intent.createChooser(i, "Image Chooser");
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
-        MainActivity.this.startActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
+        Act_Main.this.startActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
     }
 
     @SuppressLint("NewApi")
@@ -364,5 +335,25 @@ public class MainActivity extends BaseActivity {
      */
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CookieManager cookieManager = CookieManager.getInstance();
+        String cookieStr = cookieManager.getCookie(getDomain(myUrl));
+        SharedPreferences preferences = getSharedPreferences("cookie", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("cookies", cookieStr);
+        editor.commit();
+    }
+    /**
+     * 获取URL的域名
+     */
+    private String getDomain(String url) {
+        url = url.replace("http://", "").replace("https://", "");
+        if (url.contains("/")) {
+            url = url.substring(0, url.indexOf('/'));
+        }
+        return url;
     }
 }
