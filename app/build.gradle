@@ -12,7 +12,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('/Users/lishan/Desktop/xiangmu/LVSHImykey.jks')
+            storeFile file('mykey.jks')
             storePassword '895977'
             keyAlias 'key0'
             keyPassword '895977'
@@ -35,7 +35,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':aextreme')
-
+    compile 'com.github.lzyzsd:jsbridge:1.0.4'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-//    compile 'com.github.Victory-Over:SuperWeb:v1.0.2'
 }

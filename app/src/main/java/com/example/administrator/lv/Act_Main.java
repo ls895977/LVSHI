@@ -60,7 +60,6 @@ public class Act_Main extends BaseActivity {
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
     private String myUrl = "https://lawyer.libawall.com";
     private ACache aCache;
-
     @Override
     public int initLayoutId() {
         return R.layout.act_main;
@@ -72,6 +71,7 @@ public class Act_Main extends BaseActivity {
         aCache = ACache.get(this);
         if (aCache.getAsString("cookies") != null) {
 //            setCookies(aCache.getAsString("cookies"));
+            Debug.e("----------同步cookie中--");
             synCookies(this, myUrl);
         }
         rxPermissions = new RxPermissions(this);
@@ -392,7 +392,7 @@ public class Act_Main extends BaseActivity {
         super.onDestroy();
         CookieManager cookieManager = CookieManager.getInstance();
         String cookieStr = cookieManager.getCookie(getDomain(myUrl));
-        Log.e("------", "Cookies = " + cookieStr);
+        Debug.e("----------+保存的-cookie-"+cookieStr);
         aCache.put("cookies", cookieStr);
     }
     /**
