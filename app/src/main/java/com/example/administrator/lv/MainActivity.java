@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity {
     private RxPermissions rxPermissions;
     private ValueCallback<Uri> mUploadMessage;// 表单的数据信息
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
-        private String myUrl="https://lawyer.libawall.com";
+        private String myUrl = "https://lawyer.libawall.com";
 //    private String myUrl = "http://xmb.xmluma.cn/index2.html";
     private ACache aCache;
 
@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity {
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE)
                 .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
+                    public void accept(Boolean aBoolean) {
                         if (aBoolean) {
 
                         } else {
@@ -87,10 +87,10 @@ public class MainActivity extends BaseActivity {
                 });
         mWebView = getView(R.id.webView);
         mWebView.loadUrl(myUrl);
-        mWebView.registerHandler("getBlogNameFromObjC", new BridgeHandler() {
+        mWebView.registerHandler("finish", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                Toast.makeText(MainActivity.this, "pay--->，" + data, Toast.LENGTH_SHORT).show();
+                finish();
                 function.onCallBack("测试blog");
             }
         });
@@ -425,19 +425,14 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //这是一个监听用的按键的方法，keyCode 监听用户的动作，如果是按了返回键，同时Webview要返回的话，WebView执行回退操作，因为mWebView.canGoBack()返回的是一个Boolean类型，所以我们把它返回为true
-        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView.canGoBack()) {
-            mWebView.goBack();
-            myFinsh = false;
-            return true;
-        } else {
-            if (myFinsh) {
-                finish();
-            } else {
-                MyToast.show(context, "您确定要退出App吗？");
-                myFinsh = true;
-                return true;
+        mWebView.callHandler("goBack", "hello good", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+                Debug.e("----------发送成功！--" + data);
             }
-        }
-        return super.onKeyDown(keyCode, event);
+        });
+        mWebView.send("hello");
+        Debug.e("------点击返回分健--");
+        return true;
     }
 }

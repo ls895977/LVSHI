@@ -1,1 +1,1 @@
-include ':app', ':aextreme', ':X5WebDemo'
+include ':app', ':aextreme', ':library'
