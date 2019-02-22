@@ -56,8 +56,7 @@ public class MainActivity extends BaseActivity {
     private RxPermissions rxPermissions;
     private ValueCallback<Uri> mUploadMessage;// 表单的数据信息
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
-        private String myUrl = "https://lawyer.libawall.com";
-//    private String myUrl = "http://xmb.xmluma.cn/index2.html";
+    private String myUrl = "https://lawyer.libawall.com";
     private ACache aCache;
 
     @Override
@@ -101,31 +100,31 @@ public class MainActivity extends BaseActivity {
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.startsWith("http:") || url.startsWith("https:")) {
-                    view.loadUrl(url);
-                    return false;
-                } else {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                }
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                // TODO Auto-generated method stub
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                // TODO Auto-generated method stub
-                super.onPageFinished(view, url);
-            }
-        });
+//        mWebView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                if (url.startsWith("http:") || url.startsWith("https:")) {
+//                    view.loadUrl(url);
+//                    return false;
+//                } else {
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                }
+//            }
+//
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                // TODO Auto-generated method stub
+//                super.onPageStarted(view, url, favicon);
+//            }
+//
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                // TODO Auto-generated method stub
+//                super.onPageFinished(view, url);
+//            }
+//        });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(WebView webView,
@@ -424,15 +423,26 @@ public class MainActivity extends BaseActivity {
     //使用Webview的时候，返回键没有重写的时候会直接关闭程序，这时候其实我们要其执行的知识回退到上一步的操作
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        //这是一个监听用的按键的方法，keyCode 监听用户的动作，如果是按了返回键，同时Webview要返回的话，WebView执行回退操作，因为mWebView.canGoBack()返回的是一个Boolean类型，所以我们把它返回为true
-        mWebView.callHandler("goBack", "hello good", new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-                Debug.e("----------发送成功！--" + data);
-            }
-        });
-        mWebView.send("hello");
-        Debug.e("------点击返回分健--");
+//        //这是一个监听用的按键的方法，keyCode 监听用户的动作，如果是按了返回键，同时Webview要返回的话，WebView执行回退操作，因为mWebView.canGoBack()返回的是一个Boolean类型，所以我们把它返回为true
+//        mWebView.callHandler("goBack", "hello good", new CallBackFunction() {
+//            @Override
+//            public void onCallBack(String data) {
+//                Debug.e("----------发送成功！--" + data);
+//            }
+//        });
+//        mWebView.send("hello");
+//        Debug.e("------点击返回分健--");
+        if (mWebView.getUrl().contains("lawyer.libawall")) {
+            mWebView.callHandler("goBack", "hello good", new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+                }
+            });
+            mWebView.send("hello");
+
+        } else {
+            mWebView.goBack();
+        }
         return true;
     }
 }
