@@ -30,10 +30,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.administrator.lv.dialog.Dlg_Photograph;
 import com.example.administrator.lv.permission.RxPermissions;
 import com.example.administrator.lv.view.MyChromeClient;
+import com.example.administrator.lv.view.MyWebViewClient;
 import com.github.lzyzsd.jsbridge.BridgeHandler;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
@@ -50,7 +53,7 @@ import io.reactivex.functions.Consumer;
 
 import static com.example.administrator.lv.view.MyChromeClient.FILECHOOSER_RESULTCODE;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MyWebViewClient.backWebviewStatus {
     private BridgeWebView mWebView;
     private Uri imageUri;
     private RxPermissions rxPermissions;
@@ -58,7 +61,8 @@ public class MainActivity extends BaseActivity {
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
     private String myUrl = "https://lawyer.libawall.com";
     private ACache aCache;
-
+    private Dlg_Photograph photograph;
+    private LinearLayout lljiazai;
     @Override
     public int initLayoutId() {
         return R.layout.activity_main;
@@ -67,7 +71,23 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
         hideHeader();
+        lljiazai = getViewAndClick(R.id.jiazaill);
         aCache = ACache.get(this);
+        updateUI();
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void requestData() {
+
+    }
+
+    @Override
+    public void updateUI() {
         if (aCache.getAsString("cookies") != null) {
             synCookies(this, myUrl);
         }
@@ -100,78 +120,44 @@ public class MainActivity extends BaseActivity {
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);
-//        mWebView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                if (url.startsWith("http:") || url.startsWith("https:")) {
-//                    view.loadUrl(url);
-//                    return false;
-//                } else {
-//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                    startActivity(intent);
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//                // TODO Auto-generated method stub
-//                super.onPageStarted(view, url, favicon);
-//            }
-//
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                // TODO Auto-generated method stub
-//                super.onPageFinished(view, url);
-//            }
-//        });
+        mWebView.setWebViewClient(new MyWebViewClient(mWebView, this, MainActivity.this));
+        //拍照相册回调
+        photograph = new Dlg_Photograph(this, new Dlg_Photograph.OnClick() {
+            @Override
+            public void PhotographBack() {
+                Photograph();
+            }
+
+            @Override
+            public void photoAlbumBack() {
+                photoAlbum();
+            }
+
+            @Override
+            public void onCancle() {
+                mUploadCallbackAboveL.onReceiveValue(results);
+            }
+        });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
                                              FileChooserParams fileChooserParams) {
                 mUploadCallbackAboveL = filePathCallback;
-                take();
+                photograph.show();
                 return true;
-            }
-
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-                mUploadMessage = uploadMsg;
-                take();
-            }
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
-                mUploadMessage = uploadMsg;
-                take();
-            }
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-                mUploadMessage = uploadMsg;
-                take();
             }
         });
         mWebView.send("hello");
     }
 
     @Override
-    public void initData() {
-
-    }
-
-    @Override
-    public void requestData() {
-
-    }
-
-    @Override
-    public void updateUI() {
-
-    }
-
-    @Override
     public void onViewClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.jiazaill:
+                updateUI();
+                break;
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -198,7 +184,7 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
-
+    Uri[] results = null;
     @SuppressWarnings("null")
     @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void onActivityResultAboveL(int requestCode, int resultCode, Intent data) {
@@ -207,7 +193,7 @@ public class MainActivity extends BaseActivity {
             return;
         }
 
-        Uri[] results = null;
+
 
         if (resultCode == Activity.RESULT_OK) {
 
@@ -444,5 +430,59 @@ public class MainActivity extends BaseActivity {
             mWebView.goBack();
         }
         return true;
+    }
+
+
+    /**
+     * 直接拍照
+     */
+    public void Photograph() {
+        File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyApp");
+        if (!imageStorageDir.exists()) {
+            imageStorageDir.mkdirs();
+        }
+        File file = new File(imageStorageDir + File.separator + "IMG_" + String.valueOf(System.currentTimeMillis()) + ".jpg");
+        imageUri = Uri.fromFile(file);
+        final List<Intent> cameraIntents = new ArrayList<>();
+        final Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        final PackageManager packageManager = getPackageManager();
+        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
+        final String packageName = listCam.get(0).activityInfo.packageName;
+        final Intent intent = new Intent(captureIntent);
+        intent.setComponent(new ComponentName(packageName, listCam.get(0).activityInfo.name));
+        intent.setPackage(packageName);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        cameraIntents.add(intent);
+        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent chooserIntent = Intent.createChooser(i, "Image Chooser");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
+        MainActivity.this.startActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
+    }
+
+    /**
+     * 选择相册
+     */
+    public void photoAlbum() {
+        final List<Intent> cameraIntents = new ArrayList<>();
+        Intent i = new Intent(Intent.ACTION_GET_CONTENT);//相册
+        i.addCategory(Intent.CATEGORY_OPENABLE);
+        i.setType("image/*");
+        Intent chooserIntent = Intent.createChooser(i, "Image Chooser");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
+        MainActivity.this.startActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
+    }
+    @Override
+    public void onWebErro() {
+        Debug.e("------------错误");
+        MyToast.show(context, "网络错误！请检查网络后点击刷新！");
+        mWebView.setVisibility(View.GONE);
+        lljiazai.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void LoadSuccess() {
+        Debug.e("------------正确");
+        lljiazai.setVisibility(View.GONE);
+        mWebView.setVisibility(View.VISIBLE);
     }
 }

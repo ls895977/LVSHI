@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dip_5">5dip</dimen>
+    <dimen name="dip_10">10dip</dimen>
+    <dimen name="fond_16sp">16sp</dimen>
+    <dimen name="dip_15">15dip</dimen>
+</resources>
