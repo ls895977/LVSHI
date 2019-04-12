@@ -14,7 +14,7 @@
         android:background="@drawable/shapbuttom"
         android:gravity="center_horizontal"
         android:text="拍照"
-        android:textColor="#5c90f5"
+        android:textColor="#000000"
         android:textSize="@dimen/fond_16sp" />
 
     <TextView
@@ -26,8 +26,8 @@
         android:layout_marginTop="0.1dip"
         android:background="@drawable/shap_top"
         android:gravity="center_horizontal"
-        android:text="从手机相册选择"
-        android:textColor="#5c90f5"
+        android:text="从相册中选择"
+        android:textColor="#000000"
         android:textSize="@dimen/fond_16sp" />
 
     <TextView
@@ -38,6 +38,6 @@
         android:background="@drawable/shap"
         android:gravity="center_horizontal"
         android:text="取消"
-        android:textColor="#5c90f5"
+        android:textColor="#000000"
         android:textSize="@dimen/fond_16sp" />
 </LinearLayout>
